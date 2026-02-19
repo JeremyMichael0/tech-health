@@ -128,7 +128,7 @@ body.dark .report{
 <body>
 
 <header>
-<h2>Health bot 🩺</h2>
+<h2>Health Bot 🩺</h2>
 <button onclick="toggleDark()">🌙</button>
 </header>
 
@@ -138,7 +138,6 @@ body.dark .report{
 
 <input id="name" placeholder="Full Name">
 <input id="age" type="number" placeholder="Age">
-
 <textarea id="symptoms" placeholder="Describe symptoms..."></textarea>
 
 <select id="severity">
@@ -158,45 +157,13 @@ body.dark .report{
 
 <div class="chat-box" id="chatBox"></div>
 
-<input id="chatInput" placeholder="Ask detailed health questions...">
+<input id="chatInput" placeholder="Ask health questions...">
 <button class="primary" onclick="sendMessage()">Send Message</button>
 
 <div class="disclaimer">
 ⚠ This AI provides educational information only and is not a substitute for professional medical advice.
 </div>
-<!-- DEVELOPER PANEL -->
-<div class="dev-container" id="devPanel">
-<h3>Developer Panel</h3>
-<button onclick="clearAllHistories()">Clear All Histories</button>
-<button onclick="clearCurrentUser()">Clear Current User</button>
-<button onclick="viewUsers()">View Users</button>
-<button onclick="viewCurrentHistory()">View Current History</button>
-<button onclick="exportHistory()">Export Current History</button>
-<button onclick="importHistory()">Import History</button>
-<button onclick="deleteUser()">Delete Specific User</button>
-<button onclick="searchHistory()">Search In Histories</button>
-<button onclick="messageCount()">Show Message Count</button>
-<hr>
-<button onclick="viewSymptoms()">View Symptom Map</button>
-<button onclick="resetSymptoms()">Reset Symptom Map</button>
-<button onclick="exportSymptoms()">Export Symptom Map</button>
-<button onclick="importSymptoms()">Import Symptom Map</button>
-<hr>
-<button onclick="toggleExternalSearch()">Toggle External Search</button>
-<button onclick="toggleEmergency()">Toggle Emergency Detection</button>
-<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
-<button onclick="toggleChatLock()">Lock/Unlock Chat</button>
-<button onclick="toggleDebug()">Toggle Debug Mode</button>
-<hr>
-<button onclick="broadcast()">Broadcast Message</button>
-<button onclick="deleteMessageIndex()">Delete Message By Index</button>
-<button onclick="diagnostics()">System Diagnostics</button>
-<button onclick="storageUsage()">LocalStorage Usage</button>
-<button onclick="changePassword()">Change Dev Password</button>
-<button onclick="resetSystem()">Reset Entire System</button>
-<div id="devOutput"></div>
-</div>
-  
+
 </div>
 
 <script>
@@ -256,7 +223,6 @@ function sendMessage(){
 
   addMessage(text,"user");
   input.value="";
-
   showTyping();
 
   setTimeout(()=>{
@@ -290,22 +256,59 @@ function removeTyping(){
 function generateResponse(q){
   q=q.toLowerCase();
 
+  // Greetings
+  if(q.includes("hello") || q.includes("hi") || q.includes("hey"))
+    return "Hello 👋 I am MedPro AI. How can I assist you with your health today?";
+
+  if(q.includes("how are you"))
+    return "I'm functioning properly 😊 Tell me your symptoms and I will provide educational guidance.";
+
+  // Emergency
+  if(q.includes("chest pain") || q.includes("heart attack"))
+    return "⚠ Chest pain can indicate serious heart issues. Seek emergency medical care immediately.";
+
+  if(q.includes("shortness of breath"))
+    return "⚠ Difficulty breathing is a medical emergency. Seek urgent medical care.";
+
+  // Symptoms
   if(q.includes("fever"))
     return "Fever may indicate infection. Stay hydrated and monitor temperature.";
 
-  if(q.includes("chest pain"))
-    return "Chest pain can indicate serious heart or lung issues. Seek emergency care immediately.";
+  if(q.includes("headache"))
+    return "Headaches may be caused by stress or dehydration. Rest and drink water.";
 
+  if(q.includes("cough"))
+    return "Cough may be due to infection or allergies. Seek care if lasting more than 2 weeks.";
+
+  if(q.includes("stomach") || q.includes("abdominal"))
+    return "Abdominal pain can have various causes. Seek medical care if severe.";
+
+  if(q.includes("diarrhea"))
+    return "Stay hydrated. Seek medical care if symptoms persist.";
+
+  if(q.includes("vomiting"))
+    return "Drink small amounts of fluids frequently. Seek care if persistent.";
+
+  // Chronic diseases
   if(q.includes("diabetes"))
-    return "Diabetes management includes blood sugar monitoring, diet control, exercise, and medication if prescribed.";
+    return "Diabetes management includes blood sugar monitoring, healthy diet, exercise, and prescribed medication.";
 
-  if(q.includes("blood pressure"))
-    return "High blood pressure increases risk of heart disease. Reduce salt intake and monitor regularly.";
+  if(q.includes("blood pressure") || q.includes("hypertension"))
+    return "High blood pressure increases heart disease risk. Reduce salt and exercise regularly.";
 
-  return "For accurate diagnosis, consult a licensed medical professional. Can you provide more details?";
+  if(q.includes("malaria"))
+    return "Malaria causes fever and chills. Visit a health facility for testing.";
+
+  if(q.includes("typhoid"))
+    return "Typhoid causes prolonged fever and abdominal pain. Medical treatment is required.";
+
+  if(q.includes("stress") || q.includes("anxiety"))
+    return "Stress can affect overall health. Practice relaxation and consult a professional if needed.";
+
+  return "For accurate diagnosis and treatment, please consult a licensed healthcare professional. Can you provide more details?";
 }
+
 </script>
 
 </body>
 </html>
-
