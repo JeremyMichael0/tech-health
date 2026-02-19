@@ -164,7 +164,39 @@ body.dark .report{
 <div class="disclaimer">
 ⚠ This AI provides educational information only and is not a substitute for professional medical advice.
 </div>
-
+<!-- DEVELOPER PANEL -->
+<div class="dev-container" id="devPanel">
+<h3>Developer Panel</h3>
+<button onclick="clearAllHistories()">Clear All Histories</button>
+<button onclick="clearCurrentUser()">Clear Current User</button>
+<button onclick="viewUsers()">View Users</button>
+<button onclick="viewCurrentHistory()">View Current History</button>
+<button onclick="exportHistory()">Export Current History</button>
+<button onclick="importHistory()">Import History</button>
+<button onclick="deleteUser()">Delete Specific User</button>
+<button onclick="searchHistory()">Search In Histories</button>
+<button onclick="messageCount()">Show Message Count</button>
+<hr>
+<button onclick="viewSymptoms()">View Symptom Map</button>
+<button onclick="resetSymptoms()">Reset Symptom Map</button>
+<button onclick="exportSymptoms()">Export Symptom Map</button>
+<button onclick="importSymptoms()">Import Symptom Map</button>
+<hr>
+<button onclick="toggleExternalSearch()">Toggle External Search</button>
+<button onclick="toggleEmergency()">Toggle Emergency Detection</button>
+<button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+<button onclick="toggleChatLock()">Lock/Unlock Chat</button>
+<button onclick="toggleDebug()">Toggle Debug Mode</button>
+<hr>
+<button onclick="broadcast()">Broadcast Message</button>
+<button onclick="deleteMessageIndex()">Delete Message By Index</button>
+<button onclick="diagnostics()">System Diagnostics</button>
+<button onclick="storageUsage()">LocalStorage Usage</button>
+<button onclick="changePassword()">Change Dev Password</button>
+<button onclick="resetSystem()">Reset Entire System</button>
+<div id="devOutput"></div>
+</div>
+  
 </div>
 
 <script>
@@ -272,8 +304,8 @@ function generateResponse(q){
 
   return "For accurate diagnosis, consult a licensed medical professional. Can you provide more details?";
 }
-
 </script>
 
 </body>
 </html>
+
